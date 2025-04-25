@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Usuarios</title>
+    <!-- Bootstrap opcional para reset y grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" th:href="@{/Css/estilos.css}">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="title">Lista de Usuarios</h1>
+        <div class="table-responsive">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${usuarios}">
+                        <td th:attr="data-label='Nombre'" th:text="${user.nombre}"></td>
+                        <td th:attr="data-label='Apellido'" th:text="${user.apellido}"></td>
+                        <td th:attr="data-label='Correo'">
+                            <span th:if="${user.correo != null}" th:text="${user.correo}"></span>
+                            <span th:if="${user.correo == null}">--------</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
